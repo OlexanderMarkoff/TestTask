@@ -1,0 +1,12 @@
+xcassets:
+  - inputs: TestTask/SupportFiles/Assets.xcassets
+    outputs:
+      - templateName: swift4
+        output: TestTask/SupportFiles/Generated/Images.swift
+
+
+fonts:
+  inputs: TestTask/SupportFiles/Fonts 
+  outputs:
+    templateName: swift4
+    output: TestTask/SupportFiles/Generated/Fonts.swift
