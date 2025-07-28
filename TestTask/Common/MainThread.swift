@@ -6,3 +6,13 @@
 //
 
 import Foundation
+
+struct MainThread {
+    static func run(block: @escaping () -> Void) {
+        if Thread.isMainThread {
+            block()
+        } else {
+            DispatchQueue.main.async(execute: block)
+        }
+    }
+}

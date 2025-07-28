@@ -7,9 +7,11 @@
 
 import Foundation
 
-final class SplashCoordinator: BasicAppCoordinator {
+final class SplashScreenCoordinator: BasicAppCoordinator {
 
     override func start() {
-        let vc = SplashViewController.instantiate()
+        let vc = SplashScreenViewController.instantiate()
+
+        push(viewController: vc)
     }
 }

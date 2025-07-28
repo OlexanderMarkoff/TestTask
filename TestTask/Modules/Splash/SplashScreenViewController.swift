@@ -7,7 +7,6 @@
 
 import UIKit
 
-final class SplashScreenViewController: UIViewController {
-
+final class SplashScreenViewController: UIViewController, Storyboarded {
 
 }
