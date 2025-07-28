@@ -1,0 +1,15 @@
+excluded:
+  - TestTask/SupportFiles/Generated/
+  - Pods/
+
+disabled_rules:
+  - identifier_name
+  - inclusive_language
+
+line_length: 180
+type_body_length: 400
+function_body_length: 50
+
+nesting: 
+  type_level:
+    warning: 3
