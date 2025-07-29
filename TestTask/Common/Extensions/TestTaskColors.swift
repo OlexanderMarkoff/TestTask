@@ -36,4 +36,16 @@ extension UIColor {
         return UIColor(named: "colorGray")!
     }
 
+    @nonobjc class var testTaskTabBarBackground: UIColor {
+        return UIColor(named: "tabBarBackground")!
+    }
+
+    @nonobjc class var testTaskBlack60: UIColor {
+        return UIColor(named: "black60")!
+    }
+
+    @nonobjc class var testTaskBlack87: UIColor {
+        return UIColor(named: "black87")!
+    }
+
 }

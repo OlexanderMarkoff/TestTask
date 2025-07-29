@@ -1,0 +1,13 @@
+/* 
+  Localizable.strings
+  TestTask
+
+  Created by Olexander Markov on 29.07.2025.
+  
+*/
+
+"common.users" = "Users";
+"common.signup" = "Sign up";
+"screen.users.title" = "Working with GET request";
+"screen.signup.title" = "Working with POST request";
+

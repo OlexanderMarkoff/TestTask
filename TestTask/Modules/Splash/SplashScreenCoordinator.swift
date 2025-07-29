@@ -11,7 +11,13 @@ final class SplashScreenCoordinator: BasicAppCoordinator {
 
     override func start() {
         let vc = SplashScreenViewController.instantiate()
+        vc.goToMain = presentMainScreen
 
         push(viewController: vc)
+    }
+
+    private func presentMainScreen() {
+        let coordinator =  MainCoordinator(parentCoordinator: self)
+        coordinator.start()
     }
 }
