@@ -4,6 +4,7 @@ spent time:
 1h -- setting up the project (first run, git etc)
 6h -- architacture setup
 4h -- navagation setup
+15m -- Splash screen
 
 
 
