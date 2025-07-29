@@ -17,7 +17,6 @@ class FormViewController: TableBackedViewController {
     var viewModel: FormViewModel!
     var activeTextField: UITextField?
     var activeTextFieldIndexPath: IndexPath?
-//    var activeTextFieldModel: FormFieldModel<String>?
 
     public var height: CGFloat = 0.0
 
