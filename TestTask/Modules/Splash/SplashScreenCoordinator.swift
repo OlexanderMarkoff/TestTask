@@ -11,9 +11,17 @@ final class SplashScreenCoordinator: BasicAppCoordinator {
 
     override func start() {
         let vc = SplashScreenViewController.instantiate()
-        vc.goToMain = presentMainScreen
+        vc.goToMain = checkNetwork
 
         push(viewController: vc)
+    }
+
+    private func checkNetwork() {
+        if NetworkMonitor.shared.isConnected {
+            presentMainScreen()
+        } else {
+            presentInfoScreen(presentMainScreen)
+        }
     }
 
     private func presentMainScreen() {

@@ -6,8 +6,9 @@
 //
 
 import UIKit
+import Foundation
 
-class BasicAppCoordinator {
+class BasicAppCoordinator: ConnectionObserver {
 
     weak var navigationController: UINavigationController?
     weak var parentCoordinator: BasicAppCoordinator?
@@ -36,9 +37,7 @@ class BasicAppCoordinator {
         self.parentCoordinator = parentCoordinator
     }
 
-    func start() {
-
-    }
+    func start() {}
 
     func start(subCoordinator: BasicAppCoordinator) {
         self.subCoordinator = subCoordinator
@@ -49,9 +48,7 @@ class BasicAppCoordinator {
         self.subCoordinator = nil
     }
 
-    func start(viewController: UIViewController) {
-
-    }
+    func start(viewController: UIViewController) {}
 
     func present(viewController: UIViewController, animated: Bool = true, completion: (() -> Void)? = nil) {
         navigationController?.present(viewController, animated: animated, completion: completion)
@@ -75,7 +72,56 @@ class BasicAppCoordinator {
         }
     }
 
+    func observeNetwork() {
+        NetworkMonitor.shared.addConnectionObserver(observer: self)
+    }
+
+    func connectionChanged(isConnected: Bool) {
+        if !isConnected {
+            MainThread.run { [weak self] in
+                self?.presentInfoScreen()
+            }
+        }
+    }
+
+    func presentInfoScreen(_ completion: @escaping () -> Void = {}) {
+        let viewModel = AppMessageViewModel()
+
+        let viewController = AppMessageViewController()
+        viewController.viewModel = viewModel
+        let navC = UINavigationController(rootViewController: viewController)
+        navC.modalPresentationStyle = .fullScreen
+        viewController.closeAction = {
+            if NetworkMonitor.shared.isConnected {
+                navC.dismiss(animated: true)
+                completion()
+            } else {
+                viewModel.updateCallback?("no_connection_yet".localized)
+            }
+        }
+
+        viewModel.actionButtonuttonTapped = {
+            if NetworkMonitor.shared.isConnected {
+                navC.dismiss(animated: true)
+                completion()
+            } else {
+                viewModel.updateCallback?("no_connection_yet".localized)
+            }
+        }
+
+        present(viewController: navC)
+    }
+
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(ObjectIdentifier(self))
+    }
+
+    public static func == (lhs: BasicAppCoordinator, rhs: BasicAppCoordinator) -> Bool {
+        return ObjectIdentifier(lhs) == ObjectIdentifier(rhs)
+    }
+
     deinit {
+        NetworkMonitor.shared.removeConnectionObserver(observer: self)
         print("--- \(self) deinit")
     }
 }

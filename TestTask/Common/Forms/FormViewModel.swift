@@ -7,7 +7,7 @@
 
 import Foundation
 
-typealias ViewModelCallback = (_ error: Error?) -> Void
+typealias ViewModelCallback = (_ sessage: String?) -> Void
 
 class FormViewModel {
 

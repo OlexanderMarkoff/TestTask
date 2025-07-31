@@ -21,6 +21,11 @@ final class MainViewController: UITabBarController {
         tabBar.tintColor = .testTaskSecondary
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        UINavigationBar.appearance().backgroundColor = .testTaskPrimary
+    }
+
     private func configureNavBar() {
         let navigationBarAppearace = UINavigationBar.appearance()
 
