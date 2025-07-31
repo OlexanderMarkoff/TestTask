@@ -23,6 +23,8 @@ internal typealias AssetImageTypeAlias = ImageAsset.Image
 internal enum Asset {
   internal static let accentColor = ColorAsset(name: "AccentColor")
   internal static let logo = ImageAsset(name: "Logo")
+  internal static let navBarClose = ImageAsset(name: "NavBarClose")
+  internal static let noNetworkImage = ImageAsset(name: "NoNetworkImage")
   internal static let bottombarSignUp = ImageAsset(name: "bottombarSignUp")
   internal static let bottombarUsers = ImageAsset(name: "bottombarUsers")
 }

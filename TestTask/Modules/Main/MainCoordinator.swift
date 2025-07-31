@@ -32,6 +32,7 @@ final class MainCoordinator: BasicAppCoordinator {
         navC.modalPresentationStyle = .fullScreen
         present(viewController: navC)
         navigationController = navC
+        observeNetwork()
     }
 
 }

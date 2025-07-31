@@ -59,10 +59,8 @@ class FormViewController: TableBackedViewController {
             MainThread.run { [weak self] in
                 guard let strongSelf = self else { return }
                 strongSelf.hideLoadingView()
-                strongSelf.actionToolbar.actionButton.isEnabled = true
                 if let error = err {
                     strongSelf.handle(error)
-                    strongSelf.updateUI()
                     return
                 }
                 strongSelf.updateUI()
@@ -74,8 +72,8 @@ class FormViewController: TableBackedViewController {
         tableView.reloadData()
     }
 
-    internal func handle(_ error: Error) {
-        AppMessage.shared.display(error.localizedDescription)
+    internal func handle(_ message: String) {
+        AppMessage.shared.display(message)
     }
 
     func actionButtonAccessibility(isEnabled: Bool) {
