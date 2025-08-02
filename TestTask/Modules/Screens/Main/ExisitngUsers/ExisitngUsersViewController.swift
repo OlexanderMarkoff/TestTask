@@ -9,6 +9,8 @@ import UIKit
 
 final class ExisitngUsersViewController: FormViewController {
 
+    var fullyShownSection: (Int) -> Void = { _ in print("fullyshownSection is not overridden") }
+
     init() {
         super.init(nibName: nil, bundle: nil)
         let tabBarImage = Asset.bottombarUsers.image.draw(text: "common.users".localized)
@@ -28,5 +30,12 @@ final class ExisitngUsersViewController: FormViewController {
 
         navigationController?.setNavigationBarHidden(false, animated: false)
         parent?.navigationItem.title = "screen.users.title".localized
+    }
+
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if (viewModel?.sections[indexPath.section].cells.count ?? 0) - 1 == indexPath.row {
+            fullyShownSection(indexPath.section)
+        }
+        return super.tableView(tableView, cellForRowAt: indexPath)
     }
 }

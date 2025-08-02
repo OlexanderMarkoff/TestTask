@@ -29,4 +29,24 @@ extension UIImage {
         let newImage =  UIGraphicsGetImageFromCurrentImageContext()
         return newImage
     }
+
+    static func initialsImage(text: String, size: CGSize, textColor: UIColor, backgroundColor: UIColor, fontSize: CGFloat = 24) -> UIImage {
+        let drawingRect = CGRect(origin: .zero, size: size)
+
+        let label = UILabel()
+        label.text = text
+        label.frame = drawingRect
+        label.textColor = textColor
+        label.textAlignment = .center
+        label.backgroundColor = backgroundColor
+        label.font = FontFamily.NunitoSans.semiBold.font(size: fontSize)
+
+        let format = UIGraphicsImageRendererFormat(for: .init(displayScale: UIScreen.main.scale))
+        let renderer = UIGraphicsImageRenderer(bounds: drawingRect, format: format)
+        return renderer.image { context in
+            backgroundColor.setFill()
+            context.fill(drawingRect)
+            label.layer.draw(in: context.cgContext)
+        }
+    }
 }

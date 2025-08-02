@@ -34,7 +34,9 @@ final class AppMessageCell: UITableViewCell {
     func configure(with model: AppMessageModel) {
         messageImage.image = model.image
         messageLabel.text = model.message
-        messageButton.titleLabel?.text = model.buttonTitle
+        messageButton.isHidden = model.hideButton
+        messageButton.setTitle(model.buttonTitle, for: .normal)
+
     }
 
     @objc private func didTapActionButton() {

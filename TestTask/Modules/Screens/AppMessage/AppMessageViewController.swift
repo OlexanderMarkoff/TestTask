@@ -52,7 +52,6 @@ final class AppMessageViewController: FormViewController {
         navigationController?.setNavigationBarHidden(false, animated: false)
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "", style: .done, target: nil, action: nil)
 
-        tableView.isScrollEnabled = false
     }
 
     @objc func didTapCloseButton() {

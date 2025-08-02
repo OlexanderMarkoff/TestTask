@@ -52,7 +52,11 @@ final class LoadingView: UIView {
 
     func commonSetup() {
         addSubview(overlayView)
+        overlayView.translatesAutoresizingMaskIntoConstraints = false
+
         addSubview(stackView)
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+
         stackView.addArrangedSubview(activityIndicator)
         activityIndicator.color = .testTaskLoader
 
@@ -61,6 +65,7 @@ final class LoadingView: UIView {
             overlayView.leadingAnchor.constraint(equalTo: leadingAnchor),
             overlayView.trailingAnchor.constraint(equalTo: trailingAnchor),
             overlayView.bottomAnchor.constraint(equalTo: bottomAnchor),
+
             stackView.centerYAnchor.constraint(equalTo: centerYAnchor),
             stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: 20)
@@ -71,7 +76,7 @@ final class LoadingView: UIView {
         isHidden = false
         activityIndicator.startAnimating()
         animator.addAnimations {
-            self.overlayView.effect = UIBlurEffect(style: .dark)
+            self.overlayView.effect = UIBlurEffect(style: .light)
         }
         if !animator.isRunning {
             animator.startAnimation()
