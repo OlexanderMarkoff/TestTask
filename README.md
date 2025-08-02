@@ -5,6 +5,8 @@ spent time:
 6h -- architacture setup
 4h -- navagation setup
 15m -- Splash screen
+4h -- No network scree and logic
+8-10h -- existing users screen
 
 
 

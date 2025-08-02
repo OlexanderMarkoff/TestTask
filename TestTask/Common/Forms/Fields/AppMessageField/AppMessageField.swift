@@ -37,6 +37,7 @@ final class AppMessageField: FormField {
 
     func preferredHeight(for indexPath: IndexPath) -> CGFloat {
         let insets = UIApplication.shared.keyWindow?.safeAreaInsets
-        return UIScreen.main.bounds.size.height - (insets?.top ?? 0.0) - (insets?.bottom ?? 0.0) - 44 // 44 is nav bar height
+        // 44 is nav bar height, 83 is tab har height. I know better to get if from views, but we have what we have ;)
+        return UIScreen.main.bounds.size.height - (insets?.top ?? 0.0) - (insets?.bottom ?? 0.0) - 44 - 83
     }
 }

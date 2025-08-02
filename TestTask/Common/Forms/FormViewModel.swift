@@ -12,9 +12,13 @@ typealias ViewModelCallback = (_ sessage: String?) -> Void
 class FormViewModel {
 
     internal var updateCallback: ViewModelCallback?
-    var modelDidUpdate: () -> Void = { print("modelDidUpdate is not overridden") }
-    var redrawRow: (IndexPath) -> Void = { _ in print("redrawRow selectionCalback is not overridden") }
-    var actionButtonAccessibility: (Bool) -> Void = {_ in print("actionButtonAccessibilityd is not overridden") }
+    var modelDidUpdate: () -> Void = {}
+    var redrawRow: (IndexPath) -> Void = { _ in}
+    var redrawSection: (Int) -> Void = { _ in }
+    var notifySectionAdded: (Int) -> Void = { _ in }
+    var actionButtonAccessibility: (Bool) -> Void = {_ in}
+    var displayLoadingView: () -> Void = {}
+    var hideLoadingView: () -> Void = {}
 
     var sections: [FormSection]  =  []
 

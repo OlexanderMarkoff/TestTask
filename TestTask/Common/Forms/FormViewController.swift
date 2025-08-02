@@ -14,14 +14,25 @@ class FormViewController: TableBackedViewController {
     var selectedInternalURL: (URL) -> Void = { _ in print("selectedInternalURL not overridden") }
     var onRowSelected: (IndexPath) -> Void = { _ in print("onRowSelected is not overridden") }
 
-    var viewModel: FormViewModel!
-    var activeTextField: UITextField?
-    var activeTextFieldIndexPath: IndexPath?
+    var viewModel: FormViewModel! {
+        didSet {
+            viewModel.redrawRow = { [weak self] in self?.redrawRow(indexPath: $0) }
+            viewModel.redrawSection = { [weak self] in self?.redrawSection(section: $0) }
+            viewModel.notifySectionAdded = { [weak self] in self?.tableView.insertSections(IndexSet([$0]), with: .fade)}
+            viewModel.hideLoadingView = { [weak self] in self?.hideLoadingView() }
+            viewModel.displayLoadingView = { [weak self] in
+                self?.endEditing() // all the time we show the loading view it means that editing ended. !!should fix all the "keyboard cases"!!
+                self?.displayLoadingView()
+            }
+            viewModel.modelDidUpdate = { [weak self] in self?.updateUI() }
+        }
+    }
 
     public var height: CGFloat = 0.0
 
     private(set) var hasActionButton: Bool = false
 
+    private var knownIdentifiers: [String] = []
     private var actionToolbarBottomConstraint: NSLayoutConstraint!
 
     @objc private func didTapActionButton(_ sender: PrimaryActionButton) {
@@ -69,6 +80,7 @@ class FormViewController: TableBackedViewController {
     }
 
     internal func updateUI() {
+        registerCellNIBs()
         tableView.reloadData()
     }
 
@@ -178,6 +190,7 @@ class FormViewController: TableBackedViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        registerCellNIBsIfNeeded()
         return viewModel?.sections[section].cells.count ?? 0
     }
 
@@ -197,6 +210,7 @@ class FormViewController: TableBackedViewController {
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
+        registerCellNIBsIfNeeded()
         return viewModel.sections.count
     }
 
@@ -219,7 +233,35 @@ class FormViewController: TableBackedViewController {
     }
 
     func redrawRow(indexPath: IndexPath) {
+        registerCellNIBs()
+
         tableView.reloadRows(at: [indexPath], with: .fade)
+    }
+
+    private func registerCellNIBsIfNeeded() {
+        if !viewModel.sections.isEmpty, knownIdentifiers.isEmpty {
+            registerCellNIBs()
+        }
+    }
+
+    func redrawSection(section: Int) {
+        registerCellNIBs()
+        tableView.reloadSections(IndexSet([section]), with: .fade)
+    }
+
+    func endEditing() {
+        view.endEditing(true)
+    }
+
+    func registerCellNIBs() {
+        for section in viewModel.sections {
+            for item in section.cells {
+                guard !knownIdentifiers.contains(item.reuseIdentifier) else { continue }
+                let nib = UINib(nibName: item.nibName, bundle: .main)
+                tableView.register(nib, forCellReuseIdentifier: item.reuseIdentifier)
+                knownIdentifiers.append(item.reuseIdentifier)
+            }
+        }
     }
 
     deinit {

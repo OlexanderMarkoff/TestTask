@@ -27,6 +27,7 @@ internal enum Asset {
   internal static let noNetworkImage = ImageAsset(name: "NoNetworkImage")
   internal static let bottombarSignUp = ImageAsset(name: "bottombarSignUp")
   internal static let bottombarUsers = ImageAsset(name: "bottombarUsers")
+  internal static let noUsers = ImageAsset(name: "noUsers")
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name
 

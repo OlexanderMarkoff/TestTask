@@ -14,5 +14,5 @@ enum TextStyle {
     case textBody3
     case textBody3Light
 
-    case custom(color: UIColor = .black.withAlphaComponent(87), font: UIFont = FontFamily.NunitoSans.regular.font(size: 14.0))
+    case custom(color: UIColor = .black.withAlphaComponent(0.87), font: UIFont = FontFamily.NunitoSans.regular.font(size: 14.0))
 }

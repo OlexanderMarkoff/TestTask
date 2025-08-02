@@ -11,6 +11,12 @@
 "common.try_again" = "Try again";
 "screen.users.title" = "Working with GET request";
 "screen.signup.title" = "Working with POST request";
-"no_connection.message" = "There is no internet connection";
+"message.no_connection" = "There is no internet connection";
 "no_connection_yet" = "No connection yet!";
+
+"message.no_users" ="There are no users yet";
+
+
+// Mark: Request errors
+"error.request.get_users_fails" = "Requesting Users fails, please take a loo at reques.";
 

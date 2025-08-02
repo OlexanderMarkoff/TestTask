@@ -9,18 +9,14 @@ import UIKit
 
 protocol LoadingViewDisplayer {
     func displayLoadingView()
-    func displayLoadingView(message: String?)
     func hideLoadingView()
 }
 
 extension LoadingViewDisplayer where Self: UIViewController {
 
     func displayLoadingView() {
-        displayLoadingView(message: nil)
-    }
-
-    func displayLoadingView(message: String? = nil) {
-        let loadingView = existingLoadingView() ?? createLoadingView(message: message)
+        let loadingView = existingLoadingView() ?? createLoadingView()
+        view.bringSubviewToFront(loadingView)
         loadingView.show()
     }
 
@@ -29,25 +25,23 @@ extension LoadingViewDisplayer where Self: UIViewController {
     }
 
     // MARK: private
-
     private func existingLoadingView() -> LoadingView? {
         return view.subviews
             .compactMap { $0 as? LoadingView }
             .first
     }
 
-    private func createLoadingView(message: String?) -> LoadingView {
+    private func createLoadingView() -> LoadingView {
         let loadingView = LoadingView()
-        loadingView.setMessage(message)
-
-        loadingView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(loadingView)
+        loadingView.translatesAutoresizingMaskIntoConstraints = false
         view.addConstraints([
             loadingView.topAnchor.constraint(equalTo: view.topAnchor),
             loadingView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             loadingView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             loadingView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
+
         return loadingView
     }
 

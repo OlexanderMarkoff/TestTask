@@ -9,7 +9,7 @@ import UIKit
 
 struct FormSection {
     let id: Int
-    let title: String?
+    var title: String?
     var titleStyle: TextStyle = .textH1
     var subtitle: String?
     var subtitleStyle: TextStyle = .textBody1
