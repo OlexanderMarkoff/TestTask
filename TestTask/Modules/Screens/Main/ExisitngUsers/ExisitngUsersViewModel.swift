@@ -72,7 +72,7 @@ final class ExisitngUsersViewModel: FormViewModel {
 
     func sectionFullyShown(section: Int) {
         if !state.loadedPages.keys.contains(section) {// if key exists -- loanig next page requested
-            guard let page = state.loadedPages[section - 1] else { return }//get previous page to check if next exists
+            guard let page = state.loadedPages[section - 1] else { return }// get previous page to check if next exists
             if page?.links.nextUrl  == nil { return } // nil means no next page
             fetchUsers(page: (page?.page ?? 0) + 1)
         }
@@ -80,6 +80,13 @@ final class ExisitngUsersViewModel: FormViewModel {
 
     private func makeNoUsersSection() -> FormSection {
         return FormSection(id: 0, cells: [noUsersField])
+    }
+
+    func onRowSelected(indexPath: IndexPath) {
+        guard sections[indexPath.section].cells[indexPath.row] is UserField else { return }
+        if let user = state.loadedPages[indexPath.section]??.users[indexPath.row] {
+            print(user.name)
+        }
     }
 
     struct State {

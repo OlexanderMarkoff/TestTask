@@ -15,6 +15,7 @@ final class ExisitngUsersCoordinator: BasicAppCoordinator {
         let viewController = ExisitngUsersViewController()
         viewController.viewModel = viewModel
         viewController.fullyShownSection = viewModel.sectionFullyShown
+        viewController.onRowSelected = viewModel.onRowSelected
         return viewController
     }
 }
