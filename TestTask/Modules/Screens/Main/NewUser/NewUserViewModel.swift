@@ -98,28 +98,19 @@ final class NewUserViewModel: FormViewModel {
     }
 
     private func positionsLoaded(postions: PositionsResponse) {
-//        timer = Timer.scheduledTimer(withTimeInterval: 5.0, repeats: false) { [weak self] _ in
-//            guard let self = self else { return }
-            state.selectedPositionIndex = 0
-            state.userPositions = postions.positions
+        state.selectedPositionIndex = 0
+        state.userPositions = postions.positions
 
-            var postionCells: [FormField] = []
-            postionCells.append(Spacer(height: 12))
+        var postionCells: [FormField] = []
+        postionCells.append(Spacer(height: 12))
 
-            postionCells.append(contentsOf: postions.positions.enumerated().map { (index, positionResponse) in
-                return CheckboxField(tag: index, model: CheckboxFieldModel(isSelected: index == 0, title: positionResponse.name))
-            })
+        postionCells.append(contentsOf: postions.positions.enumerated().map { (index, positionResponse) in
+            return CheckboxField(tag: index, model: CheckboxFieldModel(isSelected: index == 0, title: positionResponse.name))
+        })
 
-            sections[Tags.Sections.userPosition].cells = postionCells
-            redrawSection(Tags.Sections.userPosition)
-//        }
-    }
+        sections[Tags.Sections.userPosition].cells = postionCells
+        redrawSection(Tags.Sections.userPosition)
 
-    // timer just to make some delay before main screen shown
-    var timer: Timer?
-    private func stopTimer() {
-        timer?.invalidate()
-        timer = nil
     }
 
     func onRowSelected(indexPath: IndexPath) {
