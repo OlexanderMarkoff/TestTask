@@ -1,0 +1,48 @@
+/* 
+  Localizable.strings
+  TestTask
+
+  Created by Olexander Markov on 29.07.2025.
+  
+*/
+
+"common.users" = "Users";
+"common.signup" = "Sign up";
+"common.try_again" = "Try again";
+"common.your_name" = "Your name";
+"common.email" = "Email";
+"common.phone" = "Phone";
+"common.upload" = "Upload";
+"common.camera" = "Camera";
+"common.gallery" = "Gallery";
+"common.cancel" = "Cancel";
+"common.got_it" = "Got it";
+"upload_photo" = "Upload your photo";
+"screen.users.title" = "Working with GET request";
+"screen.signup.title" = "Working with POST request";
+"message.no_connection" = "There is no internet connection";
+"tile.select_position" = "Select your position";
+"no_connection_yet" = "No connection yet!";
+
+// Mark: messages
+"message.no_users" ="There are no users yet";
+"message.choose_photo" ="Choose how you want to add a photo";
+"message.user_registered" ="User successfully registered";
+"message.email_registered" ="That email is already registered";
+
+
+// Mark: Request errors
+"error.request.get_users_fails" = "Requesting Users fails, please take a look at reques.";
+"error.length_not_exact" = "Length shoul be %@s";
+"error.length_too_short" = "Length shoul be more that %@s";
+"error.length_too_long" = "Length shoul be less that %@s";
+"error.length_not_in_range" = "Length shoul be between %@s and %@s";
+"error.not_alphanumeric" = "Only alphanumeric characters aloowed";
+"error.empty" = "Should not be empty";
+"error.invalid_email" = "Invalid email format";
+"error.invalid_phone" = "Invalid phone number";
+"error.required_field" = "Required field";
+"error.get_token_fails" = "Get Token request fails";
+"error.get_token_wrong" = "Get Token wrong request";
+"error.new_user_wrong" = "Create new user wrong request";
+
