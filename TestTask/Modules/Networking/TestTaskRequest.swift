@@ -109,8 +109,8 @@ struct TestTaskRequest {
         return request
     }
 
-    // MARK: making requests section
-    static func makeGetUsersReuest(page: Int, count: Int) -> TestTaskRequest {
+    // MARK: making request section
+    static func makeGetUsersRequest(page: Int, count: Int) -> TestTaskRequest {
         let params: [String: String] = [
             "page": "\(page)",
             "count": "\(count)"

@@ -36,7 +36,7 @@ final class ExisitngUsersViewModel: FormViewModel {
     }
 
     private func fetchUsers(page: Int = 1, count: Int = 6) {
-        if let request = TestTaskRequest.makeGetUsersReuest(page: page, count: count).plainRequest {
+        if let request = TestTaskRequest.makeGetUsersRequest(page: page, count: count).plainRequest {
             state.loadedPages[page - 1] = nil
             if page == 1 {displayLoadingView()}
             _ = Task { [weak self] in
