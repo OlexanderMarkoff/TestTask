@@ -7,12 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EF4600792E43CCED000F7473 /* walkthrough_registration.MP4 in Resources */ = {isa = PBXBuildFile; fileRef = EF4600782E43CCED000F7473 /* walkthrough_registration.MP4 */; };
+		EF46007B2E43CCF2000F7473 /* new_user_validations.MP4 in Resources */ = {isa = PBXBuildFile; fileRef = EF46007A2E43CCF2000F7473 /* new_user_validations.MP4 */; };
+		EF46007D2E43CD08000F7473 /* How_new_view_adding_works.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = EF46007C2E43CD08000F7473 /* How_new_view_adding_works.mp4 */; };
 		EF4E5F982E339EA500E9B520 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = EF4E5F972E339EA500E9B520 /* README.md */; };
 		EF5BB7C32E37CCC600A89A42 /* swiftgen.yml in Resources */ = {isa = PBXBuildFile; fileRef = EF5BB7C22E37CCC600A89A42 /* swiftgen.yml */; };
 		EF5BB7E62E37FD1E00A89A42 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = EF5BB7E52E37FD1E00A89A42 /* .swiftlint.yml */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EF4600782E43CCED000F7473 /* walkthrough_registration.MP4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = walkthrough_registration.MP4; sourceTree = "<group>"; };
+		EF46007A2E43CCF2000F7473 /* new_user_validations.MP4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = new_user_validations.MP4; sourceTree = "<group>"; };
+		EF46007C2E43CD08000F7473 /* How_new_view_adding_works.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = How_new_view_adding_works.mp4; sourceTree = "<group>"; };
 		EF4E5F5F2E33997200E9B520 /* TestTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF4E5F972E339EA500E9B520 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		EF5BB7C22E37CCC600A89A42 /* swiftgen.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = swiftgen.yml; sourceTree = "<group>"; };
@@ -57,6 +63,9 @@
 				EF5BB7C22E37CCC600A89A42 /* swiftgen.yml */,
 				EF4E5F972E339EA500E9B520 /* README.md */,
 				EF5BB7E52E37FD1E00A89A42 /* .swiftlint.yml */,
+				EF4600782E43CCED000F7473 /* walkthrough_registration.MP4 */,
+				EF46007A2E43CCF2000F7473 /* new_user_validations.MP4 */,
+				EF46007C2E43CD08000F7473 /* How_new_view_adding_works.mp4 */,
 				EF4E5F612E33997200E9B520 /* TestTask */,
 				EF4E5F602E33997200E9B520 /* Products */,
 			);
@@ -137,8 +146,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF4600792E43CCED000F7473 /* walkthrough_registration.MP4 in Resources */,
 				EF5BB7E62E37FD1E00A89A42 /* .swiftlint.yml in Resources */,
 				EF4E5F982E339EA500E9B520 /* README.md in Resources */,
+				EF46007D2E43CD08000F7473 /* How_new_view_adding_works.mp4 in Resources */,
+				EF46007B2E43CCF2000F7473 /* new_user_validations.MP4 in Resources */,
 				EF5BB7C32E37CCC600A89A42 /* swiftgen.yml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
