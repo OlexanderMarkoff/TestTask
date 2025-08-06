@@ -22,13 +22,7 @@ final class AppMessageCell: UITableViewCell {
 
     private func setupView() {
         selectionStyle = .none
-        messageLabel.applyStyle(.textH1)
-        messageButton.backgroundColor = .testTaskPrimary
-        messageButton.layer.cornerRadius = 24
-
-        messageButton.titleLabel?.applyStyle(.textBody2)
         messageButton.addTarget(self, action: #selector(didTapActionButton), for: .touchUpInside)
-
     }
 
     func configure(with model: AppMessageModel) {

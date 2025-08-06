@@ -25,6 +25,7 @@ class FormViewController: TableBackedViewController {
                 self?.displayLoadingView()
             }
             viewModel.modelDidUpdate = { [weak self] in self?.updateUI() }
+            viewModel.actionButtonAccessibility = { [weak self] in self?.actionButtonAccessibility(isEnabled: $0) }
         }
     }
 
@@ -34,12 +35,6 @@ class FormViewController: TableBackedViewController {
 
     private var knownIdentifiers: [String] = []
     private var actionToolbarBottomConstraint: NSLayoutConstraint!
-
-    @objc private func didTapActionButton(_ sender: PrimaryActionButton) {
-        displayLoadingView()
-        sender.isEnabled = false
-        viewModel.submit()
-    }
 
     lazy var actionToolbar = ActionToolbarView()
 
@@ -62,9 +57,10 @@ class FormViewController: TableBackedViewController {
         navigationController?.setNavigationBarHidden(true, animated: false)
 
         configureCells()
-        actionToolbar.actionButton.addTarget(self, action: #selector(didTapActionButton(_:)), for: .touchUpInside)
         actionToolbar.actionButton.setTitle("submit".localized, for: .normal)
+        actionToolbar.actionButtonTapped = viewModel.submit
         configureActionToolbar()
+        configureTableViewContentInsets()
 
         viewModel.subscribe { [weak self] err in
             MainThread.run { [weak self] in
@@ -107,12 +103,28 @@ class FormViewController: TableBackedViewController {
     private func configureActionToolbar() {
         guard hasActionButton else { return }
         view.addSubview(actionToolbar)
-        actionToolbarBottomConstraint = view.bottomAnchor.constraint(equalTo: actionToolbar.bottomAnchor, constant: 10)
-        view.addConstraints([
+        actionToolbar.translatesAutoresizingMaskIntoConstraints = false
+        actionToolbarBottomConstraint = view.bottomAnchor.constraint(equalTo: actionToolbar.bottomAnchor, constant: 0)
+        NSLayoutConstraint.activate([
             actionToolbar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             actionToolbar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             actionToolbarBottomConstraint
         ])
+    }
+
+    func configureTableViewContentInsets(bottomInset: CGFloat = 0) {
+        let isKeyboardVisible = bottomInset != 0
+        let bottomSafeAreaInsetAdjustment = isKeyboardVisible ? -view.safeAreaInsets.bottom : 0
+        let actionToolbarHeight = actionToolbar.height()
+        let contentInsets = UIEdgeInsets(
+            top: 0,
+            left: 0,
+            bottom: bottomInset + actionToolbarHeight + bottomSafeAreaInsetAdjustment + 12,
+            right: 0
+        )
+
+        tableView.contentInset = contentInsets
+        tableView.scrollIndicatorInsets = contentInsets
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -167,8 +179,9 @@ class FormViewController: TableBackedViewController {
         headerView.addSubview(label)
 
         headerView.addConstraints([
-            label.topAnchor.constraint(equalTo: headerView.topAnchor, constant: 13.0),
-            label.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 24.0),
+            label.topAnchor.constraint(equalTo: headerView.topAnchor, constant: 12.0),
+            label.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 16.0),
+            label.trailingAnchor.constraint(equalTo: headerView.trailingAnchor, constant: 16.0),
             label.heightAnchor.constraint(equalToConstant: 24.0)
         ])
         return headerView

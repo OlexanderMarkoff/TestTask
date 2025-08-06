@@ -20,7 +20,7 @@ final class SplashScreenCoordinator: BasicAppCoordinator {
         if NetworkMonitor.shared.isConnected {
             presentMainScreen()
         } else {
-            presentInfoScreen(presentMainScreen)
+            presentNoNetworkScreen(presentMainScreen)
         }
     }
 

@@ -8,7 +8,9 @@
 import Foundation
 
 enum APIError: Error, LocalizedError {
-    case unknown, apiError(reason: String), parserError(reason: String)
+    case unknown
+    case apiError(reason: String)
+    case parserError(reason: String)
 
     var errorDescription: String? {
         switch self {
@@ -28,10 +30,15 @@ struct Activity: Decodable, CustomStringConvertible {
     }
 }
 
+let exeptionalCodes: [Int] = [401, 409, 422, 500]
+
 func fetch(request: URLRequest) async throws -> Data {
     do {
         let (data, response) = try await URLSession.shared.data(for: request)
-        guard let httpResponse = response as? HTTPURLResponse, 200..<300 ~= httpResponse.statusCode else {
+        guard let httpResponse = response as? HTTPURLResponse else {
+            throw APIError.unknown
+        }
+        if  !(200..<300 ~= httpResponse.statusCode) && !exeptionalCodes.contains(httpResponse.statusCode) {
             throw APIError.unknown
         }
         return data

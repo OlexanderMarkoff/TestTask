@@ -26,12 +26,17 @@ final class ExisitngUsersViewModel: FormViewModel {
 
     override func subscribe(with updateCallback: ViewModelCallback?) {
         super.subscribe(with: updateCallback)
-        fetchUsers()
+        reloadUsers()
 
     }
 
+    func reloadUsers() {
+        state.loadedPages = [:]
+        fetchUsers()
+    }
+
     private func fetchUsers(page: Int = 1, count: Int = 6) {
-        if let request = TestTaskRequest.makeGetUsersReuest(page: page, count: count).request {
+        if let request = TestTaskRequest.makeGetUsersReuest(page: page, count: count).plainRequest {
             state.loadedPages[page - 1] = nil
             if page == 1 {displayLoadingView()}
             _ = Task { [weak self] in
@@ -44,7 +49,7 @@ final class ExisitngUsersViewModel: FormViewModel {
                         }
                         self?.hideLoadingView()}
                 } catch let error {
-                    print(error.localizedDescription)
+                    self?.updateCallback?(error.localizedDescription)
                     await MainActor.run { [weak self] in self?.hideLoadingView()}
                 }
             }

@@ -27,4 +27,17 @@ extension String {
         let resultString = String.localizedStringWithFormat(formatString, parameter)
         return resultString
     }
+
+    public func localized(arguments: [CVarArg]) -> String {
+        let formatString = localized
+        let resultString = String(format: formatString, arguments: arguments)
+        return resultString
+    }
+
+    public func clearPhoneNumber() -> String {
+        return self.replacingOccurrences(of: " ", with: "")
+            .replacingOccurrences(of: ")", with: "")
+            .replacingOccurrences(of: "(", with: "")
+            .replacingOccurrences(of: "-", with: "")
+    }
 }

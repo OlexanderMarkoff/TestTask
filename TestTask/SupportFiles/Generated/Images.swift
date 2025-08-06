@@ -22,11 +22,15 @@ internal typealias AssetImageTypeAlias = ImageAsset.Image
 // swiftlint:disable identifier_name line_length nesting type_body_length type_name
 internal enum Asset {
   internal static let accentColor = ColorAsset(name: "AccentColor")
+  internal static let failImage = ImageAsset(name: "FailImage")
   internal static let logo = ImageAsset(name: "Logo")
   internal static let navBarClose = ImageAsset(name: "NavBarClose")
   internal static let noNetworkImage = ImageAsset(name: "NoNetworkImage")
+  internal static let successImage = ImageAsset(name: "SuccessImage")
   internal static let bottombarSignUp = ImageAsset(name: "bottombarSignUp")
   internal static let bottombarUsers = ImageAsset(name: "bottombarUsers")
+  internal static let checkboxSelected = ImageAsset(name: "checkboxSelected")
+  internal static let checkboxUnselected = ImageAsset(name: "checkboxUnselected")
   internal static let noUsers = ImageAsset(name: "noUsers")
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name
