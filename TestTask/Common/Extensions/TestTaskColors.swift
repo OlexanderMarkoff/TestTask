@@ -48,4 +48,16 @@ extension UIColor {
         return UIColor(named: "black87")!
     }
 
+    @nonobjc class var testTaskHighlighted: UIColor {
+        return UIColor(named: "buttonHighlighted")!
+    }
+
+    @nonobjc class var testTaskbuttonDissabled: UIColor {
+        return UIColor(named: "buttonDissabled")!
+    }
+
+    @nonobjc class var testTaskErrorColor: UIColor {
+        return UIColor(named: "errorColor")!
+    }
+
 }

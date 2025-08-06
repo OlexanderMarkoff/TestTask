@@ -39,10 +39,20 @@ class ActionToolbarView: UIView {
 
         addConstraints([
             actionButton.centerXAnchor.constraint(equalTo: centerXAnchor),
-            actionButton.topAnchor.constraint(equalTo: topAnchor, constant: 10.0),
-            actionButton.heightAnchor.constraint(equalToConstant: 40.0),
-            safeAreaLayoutGuide.bottomAnchor.constraint(equalTo: actionButton.bottomAnchor, constant: 10.0),
-            actionButton.widthAnchor.constraint(greaterThanOrEqualToConstant: 196.0)
+            actionButton.topAnchor.constraint(equalTo: topAnchor, constant: Constants.topSpacing),
+            actionButton.heightAnchor.constraint(equalToConstant: Constants.buttonHeight),
+            safeAreaLayoutGuide.bottomAnchor.constraint(equalTo: actionButton.bottomAnchor, constant: Constants.bottomSpacing)
         ])
+    }
+
+    func height() -> CGFloat {
+        guard !actionButton.isHidden else { return 0}
+        return Constants.topSpacing + Constants.bottomSpacing + Constants.buttonHeight
+    }
+
+    enum Constants {
+        static let buttonHeight: CGFloat = 48
+        static let topSpacing: CGFloat = 10
+        static let bottomSpacing = topSpacing
     }
 }

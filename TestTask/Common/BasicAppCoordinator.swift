@@ -79,13 +79,13 @@ class BasicAppCoordinator: ConnectionObserver {
     func connectionChanged(isConnected: Bool) {
         if !isConnected {
             MainThread.run { [weak self] in
-                self?.presentInfoScreen()
+                self?.presentNoNetworkScreen()
             }
         }
     }
 
-    func presentInfoScreen(_ completion: @escaping () -> Void = {}) {
-        let viewModel = AppMessageViewModel()
+    func presentNoNetworkScreen(_ completion: @escaping () -> Void = {}) {
+        let viewModel = AppMessageViewModel(appMessageModel: .noNetwork)
 
         let viewController = AppMessageViewController()
         viewController.viewModel = viewModel
@@ -110,6 +110,26 @@ class BasicAppCoordinator: ConnectionObserver {
         }
 
         present(viewController: navC)
+    }
+
+    func presentInfoScreen(_ appMessageModel: AppMessageModel, hasCloseButton: Bool = true, _ completion: @escaping () -> Void = {}) {
+        let viewModel = AppMessageViewModel(appMessageModel: appMessageModel)
+
+        let viewController = AppMessageViewController(hasCloseButton: hasCloseButton)
+        viewController.viewModel = viewModel
+        let navC = UINavigationController(rootViewController: viewController)
+        navC.modalPresentationStyle = .fullScreen
+        viewController.closeAction = {
+            navC.dismiss(animated: true)
+            completion()
+        }
+
+        viewModel.actionButtonuttonTapped = {
+            navC.dismiss(animated: true)
+            completion()
+        }
+
+        parentCoordinator?.present(viewController: navC)
     }
 
     public func hash(into hasher: inout Hasher) {

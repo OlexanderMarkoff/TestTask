@@ -20,6 +20,11 @@ final class MainCoordinator: BasicAppCoordinator {
     lazy var mainController: MainViewController = {
         let mainController = MainViewController()
 
+        newUserViewCoordinator.userCreated = { [weak self] in
+            self?.exisitngUsersCoordinator.reloadUsers()
+            self?.mainController.selectedIndex = 0
+        }
+
         mainController.viewControllers =  [
                 exisitngUsersCoordinator.primaryViewController(),
                 newUserViewCoordinator.primaryViewController()

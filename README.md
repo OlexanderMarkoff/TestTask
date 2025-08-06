@@ -7,8 +7,9 @@ spent time:
 15m -- Splash screen
 4h -- No network scree and logic
 8-10h -- existing users screen
+16h -- new user screen, issues with multimap
 
-
+around 40 hrs
 
 SwiftGen used for automatic assets generating.
 https://github.com/SwiftGen/SwiftGen

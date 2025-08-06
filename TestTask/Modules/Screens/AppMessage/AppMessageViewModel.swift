@@ -11,14 +11,17 @@ final class AppMessageViewModel: FormViewModel {
 
     var actionButtonuttonTapped: () -> Void = {}
 
-    private lazy var infoView: AppMessageField = {
-        return AppMessageField(tag: -1, model: .noNetwork, buttonuttonTapped: {
+    let appMessageModel: AppMessageModel
+
+   private lazy var infoView: AppMessageField = {
+        return AppMessageField(tag: -1, model: appMessageModel, buttonuttonTapped: {
             self.actionButtonuttonTapped()
         })
 
     }()
 
-    override init() {
+    init(appMessageModel: AppMessageModel) {
+        self.appMessageModel = appMessageModel
         super.init()
         sections = [
             FormSection(
@@ -27,5 +30,4 @@ final class AppMessageViewModel: FormViewModel {
                 cells: [infoView]
             )
         ]
-    }
-}
+    }}

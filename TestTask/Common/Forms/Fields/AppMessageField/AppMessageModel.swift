@@ -22,4 +22,9 @@ struct AppMessageModel {
                                            message: "message.no_users".localized,
                                            buttonTitle: "",
                                            hideButton: true)
+
+    static let `registrationSuccess` = AppMessageModel(image: Asset.successImage.image,
+                                           message: "message.user_registered".localized,
+                                                       buttonTitle: "common.got_it".localized,
+                                           hideButton: false)
 }
