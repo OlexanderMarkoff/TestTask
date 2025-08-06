@@ -33,6 +33,8 @@ final class ExisitngUsersViewModel: FormViewModel {
     func reloadUsers() {
         state.loadedPages = [:]
         fetchUsers()
+        sections = [makeNoUsersSection()]
+        modelDidUpdate()
     }
 
     private func fetchUsers(page: Int = 1, count: Int = 6) {
